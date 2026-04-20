@@ -104,11 +104,11 @@ python3 marketing.py loyalty_program
 ### Примеры запуска
 ```bash
 cd src/emails
-python3 names_extractor.py ../path/to/emails.txt
+python3 names_extractor.py emails.txt
 ```
 *Результат: файл employees.tsv*
 ```bash
-python3 letter_starter.py ivan.ivanov@corp.com
+python3 letter_starter.py marina.somova@corp.ru
 ```
 *Результат: шаблон письма*
 
@@ -124,14 +124,14 @@ python3 letter_starter.py ivan.ivanov@corp.com
 ```bash
 python3 caesar.py encode 'ls -la /home/user' 10
 ```
-*Результат: v{ -kv /voze~gyfe*
+*Результат: vc -vk /rywo/ecob*
 #### Декодирование:
 ```bash
-python3 caesar.py decode 'v{ -kv /voze~gyfe' 10
+python3 caesar.py decode 'vc -vk /rywo/ecob' 10
 ```
 *Результат: ls -la /home/user*
 #### Ошибка при кириллице:
 ```bash
 python3 caesar.py encode 'Привет, мир!' 3
 ```
-*Результат: The script does not support your language yet.*
+*Результат: Exception: The script does not support your language yet.*
