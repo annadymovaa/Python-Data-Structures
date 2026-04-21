@@ -2,3 +2,15 @@ olga.durova@corp.ru
 ivan.petrov@corp.ru
 anna.nadymova@corp.ru
 marina.somova@corp.ru
+kate.torvalds@gmail.com
+ivan.ivanov@company.com
+anna.petrova@service.net
+invalid-email@domain.com
+john.doe@provider.org
+plain_text_without_at_symbol
+sergey.sidorov@gmail.com
+onlyname@nosite.ru
+@missing_username.com
+alex.brown@work.io
+.
+12345.67890@numbers.com
