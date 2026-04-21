@@ -9,20 +9,20 @@ def get_letter(alphabet: str, letter: str, shift: int) -> str:
     new_pos = shifted % len(alphabet)
     return alphabet[new_pos]
 
-def cipher(phrase: str, shift: int) -> None:
+def cipher(phrase: str, shift: int) -> str:
 
-    new_phrase = ''
+    new_phrase = list()
     for letter in phrase:
         if letter in LOWERCASE_ALPHABET:
-            new_phrase += get_letter(LOWERCASE_ALPHABET, letter, shift)
+            new_phrase.append(get_letter(LOWERCASE_ALPHABET, letter, shift))
         elif letter in UPPERCASE_ALPHABET:
-            new_phrase += get_letter(UPPERCASE_ALPHABET, letter, shift)
+            new_phrase.append(get_letter(UPPERCASE_ALPHABET, letter, shift))
         elif not letter.isalpha():
-            new_phrase += letter
+            new_phrase.append(letter)
         else:
             raise ValueError("The script does not support your language yet.")
 
-    return new_phrase
+    return ''.join(new_phrase)
 
 if __name__ == "__main__":
     if len(sys.argv) == 4:
