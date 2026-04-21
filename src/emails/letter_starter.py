@@ -2,16 +2,14 @@ import sys
 
 def find_name(email: str) -> str:
     with open('employees.tsv', 'r', encoding='utf-8') as file:
-        people = file.readlines()
+        name = ''
+        for line in file:
         
-
-    name = ''
-    for person in people:
-        person = person.strip().split('\t')
-        if email == person[2]:
-            name = person[0]
-            break
-    return name
+            person = line.strip().split('\t')
+            if email == person[2]:
+                name = person[0]
+                break
+        return name
 
 def print_letter(name: str) -> None:
     if name != '':
