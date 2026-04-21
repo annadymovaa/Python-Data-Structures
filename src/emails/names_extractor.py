@@ -1,22 +1,27 @@
 import sys
 
-def get_emails(filepath: str) -> list:
+def get_emails(filepath: str) -> list[list[str]]:
     employees = list()
     with open(filepath, 'r', encoding='utf-8') as file:
 
-        for email in file:
+        for row_number, email in enumerate(file, start=1):
+            if not email:
+                continue
             email = email.strip()
             parts = email.split('@')
-            name_parts = parts[0].split('.')
-            if len(name_parts) >= 2:
-                name = name_parts[0].capitalize()
-                surname = name_parts[1].capitalize()
-                employees.append([name, surname, email])
+            if len(parts) == 2:
+                name_parts = parts[0].split('.')
+                if len(name_parts) >= 2:
+                    name = name_parts[0].capitalize()
+                    surname = name_parts[1].capitalize()
+                    employees.append([name, surname, email])
+                else:
+                    print(f'Skipping the line {row_number}: "{email}". Wrong format', file=sys.stderr)
             else:
-                raise IndexError('The provided email is of an incorrect structure!')
+                print(f'Skipping the line {row_number}: "{email}". Wrong format', file=sys.stderr)
     return employees
 
-def write_tsv(employees: list, filename:  str) -> None:
+def write_tsv(employees: list, filename: str) -> None:
     with open(filename, 'w', encoding='utf-8') as file:
         file.write('\t'.join(['Name', 'Surname', 'E-mail']) + '\n')
         for emp in employees:
