@@ -104,7 +104,7 @@ python3 marketing.py loyalty_program
 ### Примеры запуска
 ```bash
 cd src/emails
-python3 names_extractor.py emails.txt
+python3 names_extractor.py emails.txt employees.tsv
 ```
 *Результат: файл employees.tsv*
 ```bash
