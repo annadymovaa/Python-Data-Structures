@@ -16,17 +16,19 @@ def get_emails(filepath: str) -> list:
                 raise IndexError('The provided email is of an incorrect structure!')
     return employees
 
-def write_tsv(employees: list):
-    with open('employees.tsv', 'w', encoding='utf-8') as file:
+def write_tsv(employees: list, filename:  str) -> None:
+    with open(filename, 'w', encoding='utf-8') as file:
         file.write('\t'.join(['Name', 'Surname', 'E-mail']) + '\n')
         for emp in employees:
             file.write('\t'.join(emp) + '\n')
 
 if __name__ == "__main__":
-    if len(sys.argv) == 2:
-        #emails.txt
-        employees = get_emails(sys.argv[1])
-        write_tsv(employees)
+    if len(sys.argv) == 3:
+        input_file = sys.argv[1] #emails.txt
+        output_file = sys.argv[2] #employees.tsv
+        
+        employees = get_emails(input_file)
+        write_tsv(employees, output_file)
 
 
     
