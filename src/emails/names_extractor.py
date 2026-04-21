@@ -4,18 +4,22 @@ def get_emails(filepath: str) -> list:
     with open(filepath, 'r', encoding='utf-8') as file:
         emails = file.readlines()
     
-    employees = [['Name', 'Surname', 'E-mail']]
+    employees = list()
     for email in emails:
-        email = email.replace('\n', '')
+        email = email.strip()
         parts = email.split('@')
         name_parts = parts[0].split('.')
-        name = name_parts[0].capitalize()
-        surname = name_parts[1].capitalize()
-        employees.append([name, surname, email])
+        if len(name_parts) >= 2:
+            name = name_parts[0].capitalize()
+            surname = name_parts[1].capitalize()
+            employees.append([name, surname, email])
+        else:
+            raise IndexError('The provided email is of an incorrect structure!')
     return employees
 
 def write_tsv(employees: list):
     with open('employees.tsv', 'w', encoding='utf-8') as file:
+        file.write('\t'.join(['Name', 'Surname', 'E-mail']) + '\n')
         for emp in employees:
             file.write('\t'.join(emp) + '\n')
 
