@@ -5,20 +5,21 @@ def get_emails(filepath: str) -> list[list[str]]:
     with open(filepath, 'r', encoding='utf-8') as file:
 
         for row_number, email in enumerate(file, start=1):
+            email = email.strip()
             if not email:
                 continue
-            email = email.strip()
+            
             parts = email.split('@')
-            if len(parts) == 2:
-                name_parts = parts[0].split('.')
-                if len(name_parts) >= 2:
-                    name = name_parts[0].capitalize()
-                    surname = name_parts[1].capitalize()
-                    employees.append([name, surname, email])
-                else:
-                    print(f'Skipping the line {row_number}: "{email}". Wrong format', file=sys.stderr)
-            else:
+
+            if len(parts) != 2 or '.' not in parts[0]:
                 print(f'Skipping the line {row_number}: "{email}". Wrong format', file=sys.stderr)
+                continue
+
+            name_parts = parts[0].split('.')
+            name = name_parts[0].capitalize()
+            surname = name_parts[1].capitalize()
+            employees.append([name, surname, email])
+
     return employees
 
 def write_tsv(employees: list, filename: str) -> None:
